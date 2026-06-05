@@ -1,18 +1,32 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useParams, useRouter, usePathname } from 'next/navigation';
 
 type Language = 'pt' | 'en';
+type Locale = 'br' | 'us';
 
 interface LanguageContextType {
   language: Language;
+  locale: Locale;
   setLanguage: (lang: Language) => void;
+  setLocale: (loc: Locale) => void;
   t: (key: string) => any;
   isContactOpen: boolean;
   setIsContactOpen: (open: boolean) => void;
   isJDOpen: boolean;
   setIsJDOpen: (open: boolean) => void;
 }
+
+const localeToLang: Record<Locale, Language> = {
+  br: 'pt',
+  us: 'en',
+};
+
+const langToLocale: Record<Language, Locale> = {
+  pt: 'br',
+  en: 'us',
+};
 
 const translations: any = {
   pt: {
@@ -180,9 +194,45 @@ const translations: any = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('pt');
+  const params = useParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  const initialLocale = (params?.lang as Locale) || 'br';
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const [language, setLanguageState] = useState<Language>(localeToLang[initialLocale] || 'pt');
+  
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isJDOpen, setIsJDOpen] = useState(false);
+
+  useEffect(() => {
+    if (params?.lang && params.lang !== locale) {
+      const newLocale = params.lang as Locale;
+      if (localeToLang[newLocale]) {
+        setLocaleState(newLocale);
+        setLanguageState(localeToLang[newLocale]);
+      }
+    }
+  }, [params?.lang, locale]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const setLocale = (newLocale: Locale) => {
+    if (newLocale === locale) return;
+    
+    // Replace the locale in the pathname
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    const newPath = segments.join('/');
+    
+    router.push(newPath);
+  };
+
+  const setLanguage = (newLang: Language) => {
+    setLocale(langToLocale[newLang]);
+  };
 
   const t = (key: string) => {
     const langData = translations[language];
@@ -204,7 +254,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, isContactOpen, setIsContactOpen, isJDOpen, setIsJDOpen }}>
+    <LanguageContext.Provider value={{ language, locale, setLanguage, setLocale, t, isContactOpen, setIsContactOpen, isJDOpen, setIsJDOpen }}>
       {children}
     </LanguageContext.Provider>
   );

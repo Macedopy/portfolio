@@ -29,7 +29,7 @@ export default function WorkProcess() {
           margin: '0 auto',
           position: 'relative'
         }}>
-          {steps.map((step) => (
+          {steps.map((step: any) => (
             <div key={step.name} style={{ 
               display: 'flex', 
               flexDirection: 'column', 

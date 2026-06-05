@@ -1,4 +1,23 @@
-const GlareHover = ({
+import React from 'react';
+
+interface GlareHoverProps {
+  width?: string;
+  height?: string;
+  background?: string;
+  borderRadius?: string;
+  borderColor?: string;
+  children?: React.ReactNode;
+  glareColor?: string;
+  glareOpacity?: number;
+  glareAngle?: number;
+  glareSize?: number;
+  transitionDuration?: number;
+  playOnce?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const GlareHover: React.FC<GlareHoverProps> = ({
   width = '500px',
   height = '500px',
   background = '#000',
@@ -28,7 +47,7 @@ const GlareHover = ({
     rgba = `rgba(${r}, ${g}, ${b}, ${glareOpacity})`;
   }
 
-  const vars = {
+  const vars: any = {
     '--gh-width': width,
     '--gh-height': height,
     '--gh-bg': background,
