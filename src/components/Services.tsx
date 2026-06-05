@@ -3,18 +3,10 @@ import { useLanguage } from '@/context/LanguageContext';
 import LogoLoop from './LogoLoop';
 
 export default function Services() {
-  const { t, setIsContactOpen, setIsJDOpen } = useLanguage();
+  const { t, setIsContactOpen } = useLanguage();
 
   const handleContactClick = () => {
-    if (window.innerWidth <= 768) {
-      setIsJDOpen(true);
-      setTimeout(() => {
-        setIsJDOpen(false);
-        setIsContactOpen(true);
-      }, 1500);
-    } else {
-      setIsContactOpen(true);
-    }
+    setIsContactOpen(true);
   };
 
   const services = (t('services.items') as any).map((item: any, index: number) => {

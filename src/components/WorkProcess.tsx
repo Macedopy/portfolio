@@ -20,17 +20,41 @@ export default function WorkProcess() {
             {t('process.description')}
           </p>
         </div>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(3, 1fr)', 
-          gridTemplateRows: 'repeat(2, 200px)',
-          gap: '40px',
-          maxWidth: '1000px',
-          margin: '0 auto',
-          position: 'relative'
-        }}>
+        <style jsx>{`
+          .process-grid {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: repeat(2, 200px);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+          }
+          @media (max-width: 992px) {
+            .process-grid {
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: auto;
+              gap: 60px 40px;
+            }
+            .process-item {
+              margin-left: 0 !important;
+              margin-top: 0 !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .process-grid {
+              grid-template-columns: 1fr;
+              gap: 80px;
+            }
+            .process-diamond {
+              width: 120px !important;
+              height: 120px !important;
+            }
+          }
+        `}</style>
+        <div className="process-grid">
           {steps.map((step: any) => (
-            <div key={step.name} style={{ 
+            <div key={step.name} className="process-item" style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               alignItems: 'center', 
@@ -41,7 +65,7 @@ export default function WorkProcess() {
               marginTop: step.row === 2 ? '40px' : '0',
               marginLeft: step.col === 2 ? '20px' : '0'
             }}>
-              <div style={{ 
+              <div className="process-diamond" style={{ 
                 width: '144px', 
                 height: '144px', 
                 background: '#0E0E10', 
@@ -59,8 +83,6 @@ export default function WorkProcess() {
               </div>
             </div>
           ))}
-          
-          {/* Decorative Arrows/Lines would be implemented with SVG or absolute positioned elements */}
         </div>
       </div>
     </section>

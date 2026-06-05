@@ -14,8 +14,6 @@ interface LanguageContextType {
   t: (key: string) => any;
   isContactOpen: boolean;
   setIsContactOpen: (open: boolean) => void;
-  isJDOpen: boolean;
-  setIsJDOpen: (open: boolean) => void;
 }
 
 const localeToLang: Record<Locale, Language> = {
@@ -77,6 +75,11 @@ const translations: any = {
     ],
     'services.btn.plan': 'Planejar projeto',
     'services.tech.title': 'Minhas Tecnologias',
+    'portfolio.tag': 'PORTFÓLIO',
+    'portfolio.title': 'Meus Projetos',
+    'portfolio.description': 'Uma seleção de alguns dos meus trabalhos recentes, demonstrando minha experiência em desenvolvimento e design.',
+    'process.title': 'Processo de trabalho',
+    'process.description': 'Um processo estruturado para garantir a melhor entrega e o sucesso do seu projeto.',
     'process.steps': [
       'Entendimento do negócio',
       'Definição de requisitos',
@@ -107,7 +110,9 @@ const translations: any = {
     'footer.col1.title': 'Engenheiro de Software',
     'footer.col1.desc': 'Especialista em criar soluções digitais que unem design intuitivo e tecnologia de ponta para impactar negócios.',
     'footer.col4.title': 'Contatos',
-    'footer.rights': 'Todos os direitos reservados'
+    'footer.rights': 'Todos os direitos reservados',
+    'trust.by': 'Confiado por',
+    'trust.by.desc': 'Líderes globais da indústria que confiaram em minha experiência'
   },
   en: {
     'nav.home': 'Home',
@@ -157,6 +162,11 @@ const translations: any = {
     ],
     'services.btn.plan': 'Plan project',
     'services.tech.title': 'My Technologies',
+    'portfolio.tag': 'PORTFOLIO',
+    'portfolio.title': 'My Projects',
+    'portfolio.description': 'A selection of some of my recent work, demonstrating my experience in development and design.',
+    'process.title': 'Work Process',
+    'process.description': 'A structured process to ensure the best delivery and success of your project.',
     'process.steps': [
       'Business understanding',
       'Requirements definition',
@@ -187,7 +197,9 @@ const translations: any = {
     'footer.col1.title': 'Software Engineer',
     'footer.col1.desc': 'Specialist in creating digital solutions that combine intuitive design and cutting-edge technology to impact businesses.',
     'footer.col4.title': 'Contacts',
-    'footer.rights': 'All Rights Reserved'
+    'footer.rights': 'All Rights Reserved',
+    'trust.by': 'Trusted by',
+    'trust.by.desc': 'Global industry leaders that have trusted my expertise'
   }
 };
 
@@ -203,7 +215,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>(localeToLang[initialLocale] || 'pt');
   
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isJDOpen, setIsJDOpen] = useState(false);
 
   useEffect(() => {
     if (params?.lang && params.lang !== locale) {
@@ -254,7 +265,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, locale, setLanguage, setLocale, t, isContactOpen, setIsContactOpen, isJDOpen, setIsJDOpen }}>
+    <LanguageContext.Provider value={{ language, locale, setLanguage, setLocale, t, isContactOpen, setIsContactOpen }}>
       {children}
     </LanguageContext.Provider>
   );

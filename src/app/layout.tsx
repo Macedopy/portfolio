@@ -4,9 +4,12 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import GlobalModals from "@/components/GlobalModals";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "My static portfolio generated with Next.js",
+  title: "Bruno Macedo Lemos | Software Engineer",
+  description: "Portfólio de Engenharia de Software e Soluções Digitais",
   authors: [{ name: "Bruno Macedo Lemos" }],
+  icons: {
+    icon: '/favicon.png',
+  }
 };
 
 export default function RootLayout({

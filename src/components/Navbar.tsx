@@ -6,19 +6,11 @@ import { useLanguage } from '@/context/LanguageContext';
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('#');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t, locale, setLocale, setIsContactOpen, setIsJDOpen } = useLanguage();
+  const { t, locale, setLocale, setIsContactOpen } = useLanguage();
 
   const handleContactClick = () => {
     setIsMobileMenuOpen(false);
-    if (window.innerWidth <= 768) {
-      setIsJDOpen(true);
-      setTimeout(() => {
-        setIsJDOpen(false);
-        setIsContactOpen(true);
-      }, 1500);
-    } else {
-      setIsContactOpen(true);
-    }
+    setIsContactOpen(true);
   };
 
   useEffect(() => {

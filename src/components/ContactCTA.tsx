@@ -1,15 +1,59 @@
 export default function ContactCTA() {
   return (
     <section id="client" className="section-spacing">
+      <style jsx>{`
+        .contact-cta-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 64px;
+          align-items: center;
+          margin-bottom: 100px;
+        }
+        .cta-banner {
+          background: linear-gradient(90deg, rgba(14, 14, 14, 0.9) 0%, rgba(14, 14, 14, 0.9) 100%);
+          padding: 60px;
+          borderRadius: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .cta-content {
+          display: flex;
+          gap: 32px;
+          align-items: center;
+        }
+        @media (max-width: 992px) {
+          .cta-banner {
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+            padding: 40px;
+          }
+          .cta-content {
+            flex-direction: column;
+            gap: 20px;
+          }
+        }
+        @media (max-width: 768px) {
+          .contact-cta-grid {
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+          .testimonial-box {
+            height: 300px !important;
+          }
+          .badge {
+            width: 100px !important;
+            height: 100px !important;
+            font-size: 10px !important;
+          }
+        }
+      `}</style>
       <div className="container">
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1.5fr', 
-          gap: '64px', 
-          alignItems: 'center',
-          marginBottom: '100px'
-        }}>
-          <div style={{ position: 'relative', height: '440px' }}>
+        <div className="contact-cta-grid">
+          <div className="testimonial-box" style={{ position: 'relative', height: '440px' }}>
             <div style={{ 
               width: '100%', 
               height: '100%', 
@@ -19,7 +63,7 @@ export default function ContactCTA() {
               {/* Image placeholder */}
             </div>
             {/* Circular Text Badge Placeholder */}
-            <div style={{ 
+            <div className="badge" style={{ 
               position: 'absolute', 
               bottom: '-20px', 
               right: '-20px', 
@@ -57,17 +101,8 @@ export default function ContactCTA() {
         </div>
 
         {/* CTA Banner */}
-        <div style={{ 
-          background: 'linear-gradient(90deg, rgba(14, 14, 14, 0.9) 0%, rgba(14, 14, 14, 0.9) 100%)',
-          padding: '60px',
-          borderRadius: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          position: 'relative',
-          overflow: 'hidden'
-        }}>
-          <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+        <div className="cta-banner" style={{ borderRadius: '20px' }}>
+          <div className="cta-content">
             <div style={{ fontSize: '64px' }}>✈️</div>
             <div>
               <h2 style={{ fontSize: '32px', marginBottom: '8px' }}>Have any project idea?</h2>

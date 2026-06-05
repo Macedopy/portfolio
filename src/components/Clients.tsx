@@ -157,7 +157,7 @@ export default function Clients() {
                       }}
                     >
                       <img 
-                        src="/images/SAP_logo.png" 
+                        src="/images/sap_logo.png" 
                         alt="SAP Logo" 
                         style={{ width: '100%', height: 'auto' }} 
                       />

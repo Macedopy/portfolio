@@ -6,23 +6,14 @@ import GradientBlinds from './GradientBlinds';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
-  const { t, setIsContactOpen, setIsJDOpen } = useLanguage();
+  const { t, setIsContactOpen } = useLanguage();
 
   const handleContactClick = () => {
-    if (window.innerWidth <= 768) {
-      setIsJDOpen(true);
-      setTimeout(() => {
-        setIsJDOpen(false);
-        setIsContactOpen(true);
-      }, 1500);
-    } else {
-      setIsContactOpen(true);
-    }
+    setIsContactOpen(true);
   };
 
   return (
-    <section className="section-spacing" style={{ 
-      marginTop: '108px', 
+    <section className="hero-section section-spacing" style={{ 
       minHeight: '80vh', 
       display: 'flex', 
       alignItems: 'center',
@@ -30,6 +21,15 @@ export default function Hero() {
       overflow: 'hidden'
     }}>
       <style jsx>{`
+        .hero-section {
+          margin-top: 108px;
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            margin-top: 60px; /* Reduced margin for mobile to stick closer to top */
+            padding-top: 40px;
+          }
+        }
         .hero-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -56,10 +56,6 @@ export default function Hero() {
         }
         .profile-wrapper {
           width: 420px;
-          height: 520px;
-          display: flex;
-          align-items: flex-end;
-          justify-content: center;
           position: relative;
           z-index: 2;
           overflow: visible;
@@ -73,7 +69,6 @@ export default function Hero() {
           }
           .profile-wrapper {
             width: 340px;
-            height: 420px;
           }
         }
         @media (max-width: 768px) {
@@ -100,7 +95,6 @@ export default function Hero() {
           }
           .profile-wrapper {
             width: 280px;
-            height: 350px;
           }
         }
       `}</style>
@@ -188,15 +182,17 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
             style={{ 
               zIndex: 10,
-              position: 'relative', // ADDED: needed for Image fill
-              height: '520px' // ADDED: explicit height for fill
+              position: 'relative'
             }}
           >
             <Image 
-              src="/images/profile.png" 
+              src="/images/profile-hero.png" 
               alt="Profile Photo" 
-              fill
+              width={500}
+              height={500}
               style={{ 
+                width: '100%',
+                height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0px 20px 40px rgba(0,0,0,0.5))'
               }}

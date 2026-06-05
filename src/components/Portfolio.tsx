@@ -21,15 +21,16 @@ export default function Portfolio() {
           height: 500px;
           width: 100%;
           position: relative;
+          overflow: hidden;
         }
         @media (max-width: 768px) {
           .gallery-container {
-            height: 300px;
+            height: 400px;
           }
         }
         @media (max-width: 480px) {
           .gallery-container {
-            height: 200px;
+            height: 300px;
           }
         }
       `}</style>
