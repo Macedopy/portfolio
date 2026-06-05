@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+:root {
+  --background: #0A0A0C;
+  --foreground: #E6E6E6;
+  --secondary: rgba(230, 230, 230, 0.51);
+  --accent-primary: #194BFD;
+  --accent-secondary: #AD13FB;
+  --card-bg: linear-gradient(232.96deg, #0E0E10 27.06%, rgba(23, 23, 26, 0.23) 92.12%);
+  --button-gradient: linear-gradient(93.66deg, #194BFD -15.33%, #AD13FB 139.21%);
+  --border-color: #171719;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .space-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-spacing {
+  padding: 100px 0;
+}
+
+@media (max-width: 768px) {
+  .section-spacing {
+    padding: 60px 0;
+  }
+}
+
+.gradient-text {
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  background: var(--button-gradient);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 29px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: #18181D;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 29px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Grid helper for background */
+.bg-grid {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1140px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  pointer-events: none;
+  z-index: -1;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .bg-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bg-grid-col {
+  border-left: 1px solid rgba(14, 14, 14, 0.5);
+  border-right: 1px solid rgba(14, 14, 14, 0.5);
+}
