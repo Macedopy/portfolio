@@ -74,10 +74,11 @@ const GradientBlinds: React.FC<GradientBlindsProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
+      dpr: isMobile ? 1 : (dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1)),
       alpha: true,
-      antialias: true
+      antialias: !isMobile
     });
     rendererRef.current = renderer;
     const gl = renderer.gl;

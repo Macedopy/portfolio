@@ -98,7 +98,6 @@ export default function Hero() {
           }
         }
       `}</style>
-      {/* BACKGROUND GRADIENT BLINDS */}
       <div style={{ 
         position: 'absolute', 
         inset: 0, 
@@ -109,8 +108,8 @@ export default function Hero() {
         <GradientBlinds
           gradientColors={['#194BFD', '#AD13FB', '#194BFD']}
           angle={45}
-          noise={0.2}
-          blindCount={12}
+          noise={typeof window !== 'undefined' && window.innerWidth <= 768 ? 0.05 : 0.2}
+          blindCount={typeof window !== 'undefined' && window.innerWidth <= 768 ? 6 : 12}
           blindMinWidth={50}
           spotlightRadius={0.4}
           spotlightSoftness={1.2}
